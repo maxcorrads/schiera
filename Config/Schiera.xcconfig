@@ -1,0 +1,9 @@
+// Public defaults. Developers may override signing locally in the optional,
+// git-ignored file referenced below.
+CODE_SIGN_IDENTITY = -
+CODE_SIGN_STYLE = Automatic
+DEVELOPMENT_TEAM =
+PRODUCT_BUNDLE_IDENTIFIER = app.schiera.Schiera
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+
+#include? "../Schiera.xcodeproj/xcuserdata/LocalSigning.xcconfig"

@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		A7DF4BFD190A82A8663BAD3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41EA7DD81F77B5A52D42A8C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0CB6EA3A57FEB92AFB46B708;
+			remoteInfo = Schiera;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		17B1B8E653E1F4143CD1DABF /* Schiera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schiera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72B11DD85B1540F8B0E34A31 /* Schiera.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Schiera.xcconfig; sourceTree = SOURCE_ROOT; };
+		ED2FFE52418EDAEEF7CDD1B6 /* SchieraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchieraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B2D1B55BD7FB22E3EE9C06CE /* Schiera */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Schiera;
+			sourceTree = "<group>";
+		};
+		F7308F1A41A81B8E225C7E4E /* SchieraTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SchieraTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXGroup section */
+		14B238D3C263A564B3AB7071 = {
+			isa = PBXGroup;
+			children = (
+				72B11DD85B1540F8B0E34A31 /* Schiera.xcconfig */,
+				CE91CECC2C23A955C3ED4DBD /* Sources */,
+				A20F6F50DEACF1AFF268A561 /* Tests */,
+				31107E36D439FD9E15BAE05F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		31107E36D439FD9E15BAE05F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17B1B8E653E1F4143CD1DABF /* Schiera.app */,
+				ED2FFE52418EDAEEF7CDD1B6 /* SchieraTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A20F6F50DEACF1AFF268A561 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F7308F1A41A81B8E225C7E4E /* SchieraTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		CE91CECC2C23A955C3ED4DBD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B2D1B55BD7FB22E3EE9C06CE /* Schiera */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0CB6EA3A57FEB92AFB46B708 /* Schiera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10476C4CD6D63F9ED3653E9 /* Build configuration list for PBXNativeTarget "Schiera" */;
+			buildPhases = (
+				E8E3585854598087C05EDDB2 /* Sources */,
+				A6DD7B1B64F2D53DFC22B787 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B2D1B55BD7FB22E3EE9C06CE /* Schiera */,
+			);
+			name = Schiera;
+			packageProductDependencies = (
+			);
+			productName = Schiera;
+			productReference = 17B1B8E653E1F4143CD1DABF /* Schiera.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8D9F56918DA8A20DCFDC855 /* SchieraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 885540FC120EC51B3C5F2DB0 /* Build configuration list for PBXNativeTarget "SchieraTests" */;
+			buildPhases = (
+				CDDCF4093DD17258538298E6 /* Sources */,
+				01B6FD96413D1B4E57C58337 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06336B7B9A505833922676C3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F7308F1A41A81B8E225C7E4E /* SchieraTests */,
+			);
+			name = SchieraTests;
+			packageProductDependencies = (
+			);
+			productName = SchieraTests;
+			productReference = ED2FFE52418EDAEEF7CDD1B6 /* SchieraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41EA7DD81F77B5A52D42A8C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = C07D1872E9B37B4F6934770E /* Build configuration list for PBXProject "Schiera" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 14B238D3C263A564B3AB7071;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 31107E36D439FD9E15BAE05F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0CB6EA3A57FEB92AFB46B708 /* Schiera */,
+				F8D9F56918DA8A20DCFDC855 /* SchieraTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01B6FD96413D1B4E57C58337 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6DD7B1B64F2D53DFC22B787 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDDCF4093DD17258538298E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8E3585854598087C05EDDB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06336B7B9A505833922676C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0CB6EA3A57FEB92AFB46B708 /* Schiera */;
+			targetProxy = A7DF4BFD190A82A8663BAD3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		646232A246EFDFA8E7A84D31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72B11DD85B1540F8B0E34A31 /* Schiera.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_NAME = Schiera;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE4431E0B271859D7CF06B00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = /usr/bin/true;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.schiera.Schiera;
+				PRODUCT_NAME = Schiera;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C5492BBF73868811BBCC7492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = /usr/bin/true;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.schiera.Schiera;
+				PRODUCT_NAME = Schiera;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C5A6C0DB61370DCEBF35DDDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.schiera.SchieraTests;
+				PRODUCT_NAME = SchieraTests;
+				SDKROOT = macosx;
+				SWIFT_MODULE_NAME = SchieraTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schiera.app/Contents/MacOS/Schiera";
+			};
+			name = Release;
+		};
+		F1ABF00401690F7ABCF20687 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72B11DD85B1540F8B0E34A31 /* Schiera.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_NAME = Schiera;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FEA814B4552C344AA109D8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.schiera.SchieraTests;
+				PRODUCT_NAME = SchieraTests;
+				SDKROOT = macosx;
+				SWIFT_MODULE_NAME = SchieraTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schiera.app/Contents/MacOS/Schiera";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		885540FC120EC51B3C5F2DB0 /* Build configuration list for PBXNativeTarget "SchieraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEA814B4552C344AA109D8CF /* Debug */,
+				C5A6C0DB61370DCEBF35DDDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C07D1872E9B37B4F6934770E /* Build configuration list for PBXProject "Schiera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5492BBF73868811BBCC7492 /* Debug */,
+				BE4431E0B271859D7CF06B00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F10476C4CD6D63F9ED3653E9 /* Build configuration list for PBXNativeTarget "Schiera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				646232A246EFDFA8E7A84D31 /* Debug */,
+				F1ABF00401690F7ABCF20687 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 41EA7DD81F77B5A52D42A8C4 /* Project object */;
+}

@@ -16,3 +16,53 @@ xcuserdata/
 # Local logs and temporary files
 *.log
 *.tmp
+
+# Local secrets and signing material
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+*.cer
+*.crt
+*.mobileprovision
+*.provisionprofile
+*.keystore
+*.jks
+
+# Xcode test and indexing products
+*.dSYM
+*.dSYM.zip
+*.ipa
+*.app
+*.swiftdoc
+*.swiftmodule
+*.swiftsourceinfo
+*.index-build
+
+# Additional local Xcode metadata
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcworkspace/xcuserdata/
+
+# Coverage and test output
+*.xccovarchive
+*.xcresult
+coverage/
+
+# Common editor and OS metadata
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100/
+.Trashes/
+
+# Local agent/editor state
+.agents/
+.codex/

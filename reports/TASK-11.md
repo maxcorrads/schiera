@@ -1,0 +1,23 @@
+# TASK-11 report — documentation, privacy, and manual QA
+
+## Checkpoint
+
+- Files changed: `README.md`, `docs/MANUAL_QA.md`, `docs/PRIVACY.md`, `reports/TASK-11.md`.
+- Documentation was written from the frozen specification, architecture, contracts, acceptance matrix, and task packets. No implementation behavior was assumed beyond those inputs.
+- Manual macOS acceptance was not run by this task; the checklist explicitly requires the coordinator/user to record each result and any external blocker.
+
+## Local verification
+
+Commands run:
+
+```sh
+rg -n "Accessibility|Supported terminals|Known limitations|Architecture|verify\.sh --final" README.md
+rg -n "notDetermined|denied|granted|Request Access|Restore Previous Layout|()\\(\\)\\(\\)|two monitors|network|analytics" docs/MANUAL_QA.md
+rg -n "UserDefaults|unified logging|Accessibility|network|analytics|terminal content" docs/PRIVACY.md
+```
+
+Result: all commands found the required documentation topics (exit status 0). These are static link/content checks only; they do not claim that the app builds or that manual rows pass.
+
+## Remaining verification
+
+The coordinator must run `./scripts/verify.sh --final` after all task outputs are integrated and execute `docs/MANUAL_QA.md` on an available macOS setup.
