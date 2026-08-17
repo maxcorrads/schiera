@@ -16,6 +16,14 @@ Schiera is a lightweight macOS menu-bar utility for arranging terminal windows o
 
 It has no main window, no persistent Dock icon, no external dependencies, and no network functionality.
 
+## Download
+
+[**Download Schiera for macOS from GitHub Releases →**](https://github.com/maxcorrads/schiera/releases)
+
+Release downloads are universal DMGs for Apple silicon and Intel Macs. A filename ending in `-unsigned.dmg` identifies an ad-hoc preview that has not been notarized by Apple; macOS may require approval from **System Settings → Privacy & Security** before the first launch. Releases without that suffix are Developer ID signed and notarized.
+
+Drag **Schiera.app** to the **Applications** shortcut in the disk image, launch it, and then grant Accessibility access when requested.
+
 ## Highlights
 
 - **Five layout modes:** Smart, Row, Wrapped Rows, Balanced Grid, and Focus.
@@ -134,6 +142,8 @@ Run the complete repository, privacy, build, and test verification with:
 
 Manual macOS checks are documented in [docs/MANUAL_QA.md](docs/MANUAL_QA.md).
 
+GitHub Actions runs the same build and test checks for pushes and pull requests. The release workflow produces a universal DMG, checksum, and optional Developer ID notarization. Maintainer instructions and the required secret names are documented in [docs/RELEASING.md](docs/RELEASING.md).
+
 ## Architecture
 
 Schiera separates pure layout geometry from macOS integration:
@@ -166,7 +176,7 @@ The application never logs terminal titles, contents, commands, paths, keystroke
 - Some terminal applications enforce character-cell increments or minimum dimensions and may slightly adjust a requested frame.
 - A shortcut already claimed by macOS or another application cannot be registered.
 - Accessibility authorization and Launch at Login approval remain controlled by macOS.
-- Schiera is currently distributed as source; this repository does not provide a signed or notarized release build.
+- Downloads ending in `-unsigned.dmg` are ad-hoc previews and are not notarized by Apple. A notarized release requires the maintainer's Developer ID and App Store Connect credentials.
 
 ## License
 

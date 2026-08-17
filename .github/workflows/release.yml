@@ -1,0 +1,274 @@
+name: Release DMG
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to package, without the v prefix
+        required: true
+        default: "0.1.0"
+        type: string
+      publish:
+        description: Publish a GitHub Release instead of only storing an artifact
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    name: Build universal DMG
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      MACOS_CERTIFICATE_BASE64: ${{ secrets.MACOS_CERTIFICATE_BASE64 }}
+      MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      APPLE_API_KEY_P8_BASE64: ${{ secrets.APPLE_API_KEY_P8_BASE64 }}
+      APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+      APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Prepare release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            release_tag="$GITHUB_REF_NAME"
+            version="${GITHUB_REF_NAME#v}"
+            should_publish=true
+          else
+            version="${{ inputs.version }}"
+            version="${version#v}"
+            release_tag="v${version}"
+            should_publish="${{ inputs.publish }}"
+          fi
+
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Version must look like 1.2.3 or 1.2.3-beta.1"
+            exit 1
+          fi
+
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=$release_tag" >> "$GITHUB_ENV"
+          echo "SHOULD_PUBLISH=$should_publish" >> "$GITHUB_ENV"
+
+      - name: Show toolchain
+        run: xcodebuild -version
+
+      - name: Verify repository, build, and tests
+        run: ./scripts/verify.sh --quick
+
+      - name: Determine signing mode
+        id: signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          values=(
+            "$MACOS_CERTIFICATE_BASE64"
+            "$MACOS_CERTIFICATE_PASSWORD"
+            "$APPLE_TEAM_ID"
+            "$APPLE_API_KEY_P8_BASE64"
+            "$APPLE_API_KEY_ID"
+            "$APPLE_API_ISSUER_ID"
+          )
+          present=0
+          for value in "${values[@]}"; do
+            if [[ -n "$value" ]]; then present=$((present + 1)); fi
+          done
+
+          if [[ "$present" -eq 0 ]]; then
+            echo "SIGNING_MODE=adhoc" >> "$GITHUB_ENV"
+            echo "DMG_SUFFIX=-unsigned" >> "$GITHUB_ENV"
+            echo "No Apple signing secrets found; producing an ad-hoc signed preview."
+          elif [[ "$present" -ne "${#values[@]}" ]]; then
+            echo "::error::Apple signing configuration is incomplete. Configure all documented release secrets or none of them."
+            exit 1
+          else
+            echo "SIGNING_MODE=developer-id" >> "$GITHUB_ENV"
+            echo "DMG_SUFFIX=" >> "$GITHUB_ENV"
+          fi
+
+      - name: Import Developer ID certificate
+        if: env.SIGNING_MODE == 'developer-id'
+        shell: bash
+        run: |
+          set -euo pipefail
+          certificate_path="$RUNNER_TEMP/developer-id.p12"
+          keychain_path="$RUNNER_TEMP/schiera-signing.keychain-db"
+          keychain_password="$(uuidgen)"
+
+          printf '%s' "$MACOS_CERTIFICATE_BASE64" | base64 --decode > "$certificate_path"
+          security create-keychain -p "$keychain_password" "$keychain_path"
+          security set-keychain-settings -lut 21600 "$keychain_path"
+          security unlock-keychain -p "$keychain_password" "$keychain_path"
+          security import "$certificate_path" \
+            -k "$keychain_path" \
+            -P "$MACOS_CERTIFICATE_PASSWORD" \
+            -T /usr/bin/codesign \
+            -T /usr/bin/security
+          security set-key-partition-list \
+            -S apple-tool:,apple:,codesign: \
+            -s \
+            -k "$keychain_password" \
+            "$keychain_path"
+          security list-keychains -d user -s "$keychain_path"
+
+          signing_identity="$(security find-identity -v -p codesigning "$keychain_path" | awk -F\" '/Developer ID Application/ { print $2; exit }')"
+          if [[ -z "$signing_identity" ]]; then
+            echo "::error::The imported archive does not contain a Developer ID Application identity."
+            exit 1
+          fi
+
+          notary_key_path="$RUNNER_TEMP/AuthKey_${APPLE_API_KEY_ID}.p8"
+          printf '%s' "$APPLE_API_KEY_P8_BASE64" | base64 --decode > "$notary_key_path"
+          chmod 600 "$notary_key_path"
+
+          echo "SIGNING_IDENTITY=$signing_identity" >> "$GITHUB_ENV"
+          echo "SIGNING_KEYCHAIN=$keychain_path" >> "$GITHUB_ENV"
+          echo "NOTARY_KEY_PATH=$notary_key_path" >> "$GITHUB_ENV"
+
+      - name: Build universal Release app
+        shell: bash
+        run: |
+          set -euo pipefail
+          derived_data="$RUNNER_TEMP/SchieraReleaseDerivedData"
+          common_arguments=(
+            -project Schiera.xcodeproj
+            -scheme Schiera
+            -configuration Release
+            -destination "generic/platform=macOS"
+            -derivedDataPath "$derived_data"
+            ARCHS="arm64 x86_64"
+            ONLY_ACTIVE_ARCH=NO
+            CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+            MARKETING_VERSION="$VERSION"
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER"
+          )
+
+          if [[ "$SIGNING_MODE" == "developer-id" ]]; then
+            xcodebuild "${common_arguments[@]}" \
+              CODE_SIGN_STYLE=Manual \
+              CODE_SIGN_IDENTITY="$SIGNING_IDENTITY" \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+              CODE_SIGNING_ALLOWED=YES \
+              CODE_SIGNING_REQUIRED=YES \
+              OTHER_CODE_SIGN_FLAGS="--timestamp" \
+              build
+          else
+            xcodebuild "${common_arguments[@]}" \
+              CODE_SIGN_STYLE=Manual \
+              CODE_SIGN_IDENTITY=- \
+              DEVELOPMENT_TEAM= \
+              CODE_SIGNING_ALLOWED=YES \
+              build
+          fi
+
+          app_path="$derived_data/Build/Products/Release/Schiera.app"
+          test -d "$app_path"
+          codesign --verify --deep --strict --verbose=2 "$app_path"
+
+          architectures="$(lipo -archs "$app_path/Contents/MacOS/Schiera")"
+          [[ "$architectures" == *arm64* && "$architectures" == *x86_64* ]] || {
+            echo "::error::Expected a universal binary, found: $architectures"
+            exit 1
+          }
+
+          bundle_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app_path/Contents/Info.plist")"
+          [[ "$bundle_version" == "$VERSION" ]] || {
+            echo "::error::Bundle version $bundle_version does not match release version $VERSION"
+            exit 1
+          }
+
+          echo "APP_PATH=$app_path" >> "$GITHUB_ENV"
+
+      - name: Package DMG
+        shell: bash
+        run: |
+          set -euo pipefail
+          dmg_filename="Schiera-${VERSION}${DMG_SUFFIX}.dmg"
+          dmg_path="$GITHUB_WORKSPACE/dist/$dmg_filename"
+          ./scripts/package-dmg.sh "$APP_PATH" "$dmg_path" "Schiera $VERSION"
+          echo "DMG_FILENAME=$dmg_filename" >> "$GITHUB_ENV"
+          echo "DMG_PATH=$dmg_path" >> "$GITHUB_ENV"
+
+      - name: Notarize and staple DMG
+        if: env.SIGNING_MODE == 'developer-id'
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun notarytool submit "$DMG_PATH" \
+            --key "$NOTARY_KEY_PATH" \
+            --key-id "$APPLE_API_KEY_ID" \
+            --issuer "$APPLE_API_ISSUER_ID" \
+            --wait
+          xcrun stapler staple "$DMG_PATH"
+          xcrun stapler validate "$DMG_PATH"
+
+      - name: Create checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/dist"
+          shasum -a 256 "$DMG_FILENAME" > "$DMG_FILENAME.sha256"
+          echo "CHECKSUM_PATH=$GITHUB_WORKSPACE/dist/$DMG_FILENAME.sha256" >> "$GITHUB_ENV"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Schiera-${{ env.VERSION }}-${{ env.SIGNING_MODE }}
+          path: |
+            ${{ env.DMG_PATH }}
+            ${{ env.CHECKSUM_PATH }}
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish GitHub Release
+        if: env.SHOULD_PUBLISH == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          release_arguments=(
+            release create "$RELEASE_TAG"
+            "$DMG_PATH#Download Schiera for macOS"
+            "$CHECKSUM_PATH#SHA-256 checksum"
+            --title "Schiera $VERSION"
+            --generate-notes
+          )
+
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            release_arguments+=(--verify-tag)
+          else
+            release_arguments+=(--target "$GITHUB_SHA")
+          fi
+
+          if [[ "$SIGNING_MODE" == "developer-id" ]]; then
+            release_arguments+=(--latest --notes "Developer ID signed and notarized universal macOS build.")
+          else
+            release_arguments+=(--prerelease --notes "Unsigned preview build. This DMG is ad-hoc signed but not Apple-notarized, so Gatekeeper may require explicit approval in System Settings before first launch.")
+          fi
+
+          gh "${release_arguments[@]}"
+
+      - name: Remove temporary signing material
+        if: always() && env.SIGNING_MODE == 'developer-id'
+        shell: bash
+        run: |
+          if [[ -n "${SIGNING_KEYCHAIN:-}" ]]; then security delete-keychain "$SIGNING_KEYCHAIN" || true; fi
+          if [[ -n "${NOTARY_KEY_PATH:-}" ]]; then rm -f -- "$NOTARY_KEY_PATH"; fi
+          rm -f -- "$RUNNER_TEMP/developer-id.p12"

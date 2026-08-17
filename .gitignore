@@ -54,6 +54,7 @@ xcuserdata/
 *.xccovarchive
 *.xcresult
 coverage/
+dist/
 
 # Common editor and OS metadata
 .AppleDouble
