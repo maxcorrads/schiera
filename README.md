@@ -9,7 +9,12 @@
 </p>
 
 <p align="center">
-  <strong>macOS 14+</strong> · Native SwiftUI · Apple frameworks only · Local-first
+  <a href="https://github.com/maxcorrads/schiera/actions/workflows/ci.yml"><img src="https://github.com/maxcorrads/schiera/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="https://github.com/maxcorrads/schiera/releases"><img src="https://img.shields.io/github/v/release/maxcorrads/schiera?include_prereleases&sort=semver&label=release" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white" alt="macOS 14 or newer">
+  <img src="https://img.shields.io/badge/Swift-5-F05138?logo=swift&logoColor=white" alt="Swift 5">
+  <img src="https://img.shields.io/badge/Xcode-16%2B-147EFB?logo=xcode&logoColor=white" alt="Xcode 16 or newer">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
 </p>
 
 Schiera is a lightweight macOS menu-bar utility for arranging terminal windows on the display where you are working. It can choose a layout automatically, apply one manually, emphasize a specific terminal, and keep separate arrangements for different monitors or workflows.

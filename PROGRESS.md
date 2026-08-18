@@ -61,3 +61,4 @@ Environment: 2026-08-17, macOS 26.5.1 (`25F80`), Xcode 26.6 (`17F113`), one disp
 - GitHub CI run `32082510226` passed. Release run `32082729289` passed and published public prerelease `v0.1.0` with `Schiera-0.1.0-unsigned.dmg` and its checksum.
 - Added app-only README captures of the current menu and Settings UI. Both PNGs were visually inspected and scanned for local paths, user identifiers, terminal titles, commands, and content; no sensitive text was present.
 - The owner explicitly selected the MIT License; added the standard license text and replaced the previous no-license notice in the README.
+- Added a centered README badge row for live CI, release, platform, toolchain, language, and license status.

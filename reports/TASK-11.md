@@ -33,3 +33,8 @@ The coordinator must run `./scripts/verify.sh --final` after all task outputs ar
 
 - The repository owner explicitly selected the MIT License. Added the standard MIT text in `LICENSE` with copyright attribution to Matteo Corradin and linked it from `README.md`.
 - `./scripts/verify.sh --quick` — exit 0; repository checks, Debug build, and all 153 tests passed with zero failures after the license change.
+
+## README badges checkpoint — 2026-08-18
+
+- Added centered badges for live CI status, the latest GitHub release, macOS 14+, Swift 5, Xcode 16+, and the MIT License. Dynamic badges link to their corresponding GitHub pages; static platform badges reflect the project configuration.
+- Verified all six badge endpoints successfully, then ran `./scripts/verify.sh --quick`: repository checks, Debug build, and all 153 tests passed with zero failures.
