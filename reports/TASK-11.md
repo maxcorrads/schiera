@@ -28,3 +28,8 @@ The coordinator must run `./scripts/verify.sh --final` after all task outputs ar
 - Added a centered screenshot section to `README.md` with descriptive alternative text and relative repository paths.
 - Verified both assets as RGBA PNG files, inspected them visually, checked their dimensions, and scanned embedded strings for user names, local paths, or terminal content; no sensitive text was found.
 - `./scripts/verify.sh --quick` — exit 0 outside the command sandbox; repository checks, Debug build, and all 153 tests passed with zero failures.
+
+## License checkpoint — 2026-08-18
+
+- The repository owner explicitly selected the MIT License. Added the standard MIT text in `LICENSE` with copyright attribution to Matteo Corradin and linked it from `README.md`.
+- `./scripts/verify.sh --quick` — exit 0; repository checks, Debug build, and all 153 tests passed with zero failures after the license change.

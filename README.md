@@ -192,4 +192,4 @@ The application never logs terminal titles, contents, commands, paths, keystroke
 
 ## License
 
-No software license has been granted for this repository. Unless a license is added later, the source remains all rights reserved.
+Schiera is available under the [MIT License](LICENSE).
