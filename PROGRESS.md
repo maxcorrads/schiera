@@ -52,3 +52,11 @@ Environment: 2026-08-17, macOS 26.5.1 (`25F80`), Xcode 26.6 (`17F113`), one disp
 - Menu-bar permission status now refreshes on both `NSApplication.didBecomeActiveNotification` and the status menu's `NSMenu.didBeginTrackingNotification`. This covers returning from System Settings and every menu-bar click even though SwiftUI retains the menu content and does not repeat `onAppear`.
 - Generated an original Schiera application icon with the built-in image generation workflow, then integrated a complete macOS `AppIcon` asset set from 16 through 1024 pixels. The menu-bar item intentionally remains an SF Symbol template image for native monochrome rendering.
 - Post-icon `./scripts/verify.sh --final` — exit 0; `actool` generated `AppIcon.icns`, both clean builds succeeded, and both test passes completed 81 tests with zero failures.
+
+## Public preview release — 2026-08-18
+
+- Added GitHub Actions CI plus a universal-DMG release workflow with SHA-256 output, optional Developer ID notarization, and an explicit unsigned prerelease fallback when signing secrets are unavailable.
+- Local Release packaging verification confirmed an `arm64`/`x86_64` application, valid ad-hoc signature, clean entitlements, and a DMG accepted by `hdiutil verify`.
+- `./scripts/verify.sh --final` — exit 0 after release automation changes; both clean builds and test passes completed 153 tests with zero failures per pass.
+- GitHub CI run `32082510226` passed. Release run `32082729289` passed and published public prerelease `v0.1.0` with `Schiera-0.1.0-unsigned.dmg` and its checksum.
+- Added app-only README captures of the current menu and Settings UI. Both PNGs were visually inspected and scanned for local paths, user identifiers, terminal titles, commands, and content; no sensitive text was present.

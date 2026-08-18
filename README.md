@@ -16,6 +16,18 @@ Schiera is a lightweight macOS menu-bar utility for arranging terminal windows o
 
 It has no main window, no persistent Dock icon, no external dependencies, and no network functionality.
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/images/schiera-menu.png" width="320" alt="Schiera menu with profile, layout, focus, selection, undo, and Accessibility controls">
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/images/schiera-settings.png" width="440" alt="Schiera Settings with profile, arrangement, display, and terminal controls">
+</p>
+
+<p align="center">
+  <sub>Menu-bar controls and profile settings — captured from Schiera only, with no terminal windows or user content.</sub>
+</p>
+
 ## Download
 
 [**Download Schiera for macOS from GitHub Releases →**](https://github.com/maxcorrads/schiera/releases)

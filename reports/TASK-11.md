@@ -21,3 +21,10 @@ Result: all commands found the required documentation topics (exit status 0). Th
 ## Remaining verification
 
 The coordinator must run `./scripts/verify.sh --final` after all task outputs are integrated and execute `docs/MANUAL_QA.md` on an available macOS setup.
+
+## Release documentation checkpoint — 2026-08-18
+
+- Added clean, app-only captures of the menu controls and Settings UI under `docs/images/`; the captures contain no terminal windows, window titles, commands, paths, or user content.
+- Added a centered screenshot section to `README.md` with descriptive alternative text and relative repository paths.
+- Verified both assets as RGBA PNG files, inspected them visually, checked their dimensions, and scanned embedded strings for user names, local paths, or terminal content; no sensitive text was found.
+- `./scripts/verify.sh --quick` — exit 0 outside the command sandbox; repository checks, Debug build, and all 153 tests passed with zero failures.
