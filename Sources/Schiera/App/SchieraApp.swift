@@ -2,12 +2,10 @@ import SwiftUI
 
 @main
 struct SchieraApp: App {
+    // Reading a @StateObject's value in App.init would create a transient
+    // AppModel whose shortcut registrations die with it; AppModel.live()
+    // starts the model itself so the SwiftUI-owned instance registers them.
     @StateObject private var model = AppModel.live()
-
-    init() {
-        // Register the shortcut during app construction, before the menu is opened.
-        model.start()
-    }
 
     var body: some Scene {
         MenuBarExtra("Schiera", systemImage: "rectangle.split.3x1") {

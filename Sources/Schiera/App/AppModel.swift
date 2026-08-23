@@ -83,6 +83,7 @@ final class AppModel: ObservableObject {
             shortcutCollection: container.shortcutCollection
         )
         container.actionRelay.model = model
+        model.start()
         return model
     }
 
